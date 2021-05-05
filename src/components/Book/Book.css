@@ -1,0 +1,10 @@
+.c-Book {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+
+.c-BookDetails {
+  display: flex;
+  flex-direction: column;
+}

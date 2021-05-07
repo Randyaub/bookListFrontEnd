@@ -8,10 +8,10 @@ interface props {
 
 interface bookDetails {
   title: String;
-  publisher: String;
-  page_numbers: Number;
+  publisher_id: Number;
+  total_pages: Number;
   rating: Number;
-  isbn: Number;
+  isbn_13: String;
   published_date: String;
 }
 
@@ -20,10 +20,10 @@ const Book = ({ details }: props) => {
     <div className="c-Book">
       <div className="c-BookDetails">
         <h4>{details.title} </h4>
-        <span>by {details.publisher}</span>
-        <span>Page Number: {details.page_numbers} </span>
+        <span>by {details.publisher_id}</span>
+        <span>Page Number: {details.total_pages} </span>
         <span>Rating: {details.rating} Stars</span>
-        <span>ISBN: {details.isbn} </span>
+        <span>ISBN: {details.isbn_13} </span>
         <span>Published Date: {details.published_date} </span>
       </div>
       <div className="c-Book__btns">

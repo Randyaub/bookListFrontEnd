@@ -1,0 +1,14 @@
+.c-CreateUpdateForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-CreateUpdateForm__label {
+  display: block;
+  margin: 5px 0px;
+}
+
+.c-CreateUpdateForm__input {
+  display: block;
+  height: 25px;
+}

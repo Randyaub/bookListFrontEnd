@@ -11,7 +11,7 @@ const App = () => {
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route exact path="/update_book">
+      <Route exact path="/update_book/:book_id">
         <UpdatePage />
       </Route>
       <Route path="*">

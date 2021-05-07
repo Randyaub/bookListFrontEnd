@@ -24,8 +24,6 @@ const ListOfBooks = () => {
   const getBooks = async () => {
     try {
       const { data } = await axios.get("/api/books");
-      console.log(data.books);
-
       setBooks(data.books);
     } catch (error) {
       console.log(error);

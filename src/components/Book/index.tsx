@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./Book.css";
 
@@ -7,6 +8,7 @@ interface props {
 }
 
 interface bookDetails {
+  book_id: React.Key;
   title: String;
   publisher_id: Number;
   total_pages: Number;
@@ -27,7 +29,9 @@ const Book = ({ details }: props) => {
         <span>Published Date: {details.published_date} </span>
       </div>
       <div className="c-Book__btns">
-        <button className="primary-btn">Update</button>
+        <Link to={`/update_book/:${details.book_id}`} className="primary-btn">
+          Update
+        </Link>
         <button className="primary-btn">Remove</button>
       </div>
     </div>

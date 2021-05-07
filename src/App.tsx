@@ -1,15 +1,24 @@
 import React from "react";
-import ListOfBooks from "./components/ListOfBooks";
+import { Switch, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 import "./App.css";
+import UpdatePage from "./pages/UpdatePage";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>Welcome</h1>
-      <ListOfBooks />
-      <button className="primary-btn">Add book</button>
-    </div>
+    <Switch>
+      <Route exact path="/">
+        <HomePage />
+      </Route>
+      <Route exact path="/update_book">
+        <UpdatePage />
+      </Route>
+      <Route path="*">
+        <NotFoundPage />
+      </Route>
+    </Switch>
   );
-}
+};
 
 export default App;

@@ -7,18 +7,20 @@ import "./Book.css";
 
 interface props {
   book: I.book;
-  setDeleted: React.Dispatch<React.SetStateAction<boolean>>;
-  deleted: boolean;
+  books: I.book[];
+  setBooks: React.Dispatch<React.SetStateAction<I.book[]>>;
 }
 
-const Book = ({ book, setDeleted, deleted }: props) => {
-  const onRemove = async () => {
+const Book = ({ book, books, setBooks }: props) => {
+  const onRemove = async (): Promise<void> => {
     try {
       // Use data returned to display message that
       // book is deleted eventually.
       const data = axios.delete(`/api/books/${book.book_id}`);
-      setDeleted(!deleted);
-      console.log(deleted);
+      const newBooks = books.filter(
+        (removedBook) => removedBook.book_id != book.book_id
+      );
+      setBooks(newBooks);
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +30,7 @@ const Book = ({ book, setDeleted, deleted }: props) => {
     <div className="c-Book">
       <div className="c-BookDetails">
         <h4>{book.title} </h4>
-        <span>by {book.publisher_id}</span>
+        <span>by {book.publisher_id} </span>
         <span>Page Number: {book.total_pages} </span>
         <span>Rating: {book.rating} Stars</span>
         <span>ISBN: {book.isbn_13} </span>

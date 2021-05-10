@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import * as I from "../../ts/interfaces/app_interfaces";
@@ -11,14 +11,18 @@ interface props {
   setBooks: React.Dispatch<React.SetStateAction<I.book[]>>;
 }
 
-const Book = ({ book, books, setBooks }: props) => {
+const Book: React.FC<props> = ({
+  book,
+  books,
+  setBooks,
+}: props): ReactElement<JSX.Element> => {
   const onRemove = async (): Promise<void> => {
     try {
       // Use data returned to display message that
       // book is deleted eventually.
-      const data = axios.delete(`/api/books/${book.book_id}`);
+      const data = await axios.delete(`/api/books/${book.book_id}`);
       const newBooks = books.filter(
-        (removedBook) => removedBook.book_id != book.book_id
+        (removedBook) => removedBook.book_id !== book.book_id
       );
       setBooks(newBooks);
     } catch (error) {

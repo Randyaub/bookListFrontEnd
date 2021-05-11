@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Book from "../Book";
 import * as I from "../../ts/interfaces/app_interfaces";
 
@@ -9,7 +9,10 @@ interface props {
   setBooks: React.Dispatch<React.SetStateAction<I.book[]>>;
 }
 
-const ListOfBooks = ({ books, setBooks }: props) => {
+const ListOfBooks: React.FC<props> = ({
+  books,
+  setBooks,
+}: props): ReactElement<JSX.Element> => {
   return (
     <div className="c-ListOfBooks">
       {books.map((book) => {

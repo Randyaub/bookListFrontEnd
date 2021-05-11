@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import ListOfBooks from "../../components/ListOfBooks";
 import axios from "axios";
 import * as I from "../../ts/interfaces/app_interfaces";
+import { Link } from "react-router-dom";
 
-const HomePage = () => {
+const HomePage: React.FC = (): React.ReactElement<JSX.Element> => {
   const [books, setBooks] = useState<I.book[]>([]);
 
   useEffect(() => {
@@ -22,7 +23,9 @@ const HomePage = () => {
     <div className="c-HomePage">
       <h1>Welcome</h1>
       <ListOfBooks books={books} setBooks={setBooks} />
-      <button className="primary-btn">Add book</button>
+      <Link to={`/create_book`} className="primary-btn">
+        Add Book
+      </Link>
     </div>
   );
 };

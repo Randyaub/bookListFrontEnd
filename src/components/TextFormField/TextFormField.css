@@ -1,0 +1,10 @@
+.c-TextFormField {
+  padding: 5px;
+  margin: 5px 0px;
+  width: 350px;
+}
+
+.c-TextFormField__error {
+  color: red;
+  margin-bottom: 5px;
+}

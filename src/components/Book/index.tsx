@@ -20,7 +20,7 @@ const Book: React.FC<props> = ({
     try {
       // Use data returned to display message that
       // book is deleted eventually.
-      const data = await axios.delete(`/api/books/${book.book_id}`);
+      await axios.delete(`/api/books/${book.book_id}`);
       const newBooks = books.filter(
         (removedBook) => removedBook.book_id !== book.book_id
       );

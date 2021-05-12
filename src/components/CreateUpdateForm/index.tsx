@@ -29,12 +29,31 @@ const validationSchema = yup.object({
   published_date: yup.string().label("Published Date").required().max(10),
 });
 
-const CreateUpdateForm: React.FC = (): React.ReactElement<JSX.Element> => {
+interface props {
+  create?: boolean;
+  update?: boolean;
+  book_id?: number;
+}
+
+const CreateUpdateForm: React.FC<props> = ({
+  create,
+  update,
+  book_id,
+}: props): React.ReactElement<JSX.Element> => {
   const history = useHistory();
 
   const handleCreate = async (values: any) => {
     try {
       await axios.post("api/books", values);
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdate = async (values: any) => {
+    try {
+      await axios.put(`api/books/${book_id}`, values);
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -53,7 +72,8 @@ const CreateUpdateForm: React.FC = (): React.ReactElement<JSX.Element> => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        handleCreate(values);
+        create && handleCreate(values);
+        update && handleUpdate(values);
       }}
     >
       {() => (
@@ -113,7 +133,8 @@ const CreateUpdateForm: React.FC = (): React.ReactElement<JSX.Element> => {
             />
           </label>
           <button className="primary-btn" type="submit">
-            Create
+            {create && "Create"}
+            {update && "Update"}
           </button>
         </Form>
       )}
